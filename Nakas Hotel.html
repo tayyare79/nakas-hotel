@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nakas Hotel – Fethiye</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --green:       oklch(36% 0.085 148);
+    --green-light: oklch(52% 0.09 148);
+    --terra:       oklch(50% 0.1 40);
+    --cream:       oklch(97% 0.008 80);
+    --sand:        oklch(92% 0.015 80);
+    --dark:        oklch(16% 0.006 200);
+    --mid:         oklch(45% 0.005 200);
+    --gold:        oklch(70% 0.09 78);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--dark); overflow-x: hidden; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0 48px; height: 72px;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: background 0.4s, backdrop-filter 0.4s, box-shadow 0.4s;
+  }
+  nav.scrolled { background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(0,0,0,0.08); }
+
+  /* LOGO */
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo svg.logo-mark { width: 48px; height: 48px; color: white; transition: color 0.4s; }
+  nav.scrolled .nav-logo svg.logo-mark { color: var(--dark); }
+  .logo-wordmark { display: flex; flex-direction: column; line-height: 1; }
+  .logo-wordmark .wm-nakas {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 500;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: white; transition: color 0.4s;
+  }
+  .logo-wordmark .wm-hotel {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 8px; font-weight: 300;
+    letter-spacing: 0.36em; text-transform: uppercase;
+    color: rgba(255,255,255,0.65); transition: color 0.4s;
+    margin-top: 1px;
+  }
+  nav.scrolled .logo-wordmark .wm-nakas { color: var(--dark); }
+  nav.scrolled .logo-wordmark .wm-hotel { color: var(--mid); }
+
+  .nav-right { display: flex; align-items: center; gap: 32px; }
+  .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+  .nav-links a { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s; font-weight: 400; }
+  nav.scrolled .nav-links a { color: var(--mid); }
+  .nav-links a:hover { color: white; }
+  nav.scrolled .nav-links a:hover { color: var(--dark); }
+
+  /* Language switcher */
+  .lang-switcher { display: flex; gap: 2px; align-items: center; }
+  .lang-btn {
+    font-size: 10px; letter-spacing: 0.1em; font-weight: 500;
+    padding: 4px 7px;
+    background: transparent; border: none; cursor: pointer;
+    color: rgba(255,255,255,0.5); transition: color 0.3s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .lang-btn.active { color: white; border-bottom: 1px solid rgba(255,255,255,0.6); }
+  nav.scrolled .lang-btn { color: rgba(0,0,0,0.3); }
+  nav.scrolled .lang-btn.active { color: var(--dark); border-bottom-color: var(--dark); }
+  .lang-sep { width: 1px; height: 12px; background: rgba(255,255,255,0.25); }
+  nav.scrolled .lang-sep { background: rgba(0,0,0,0.15); }
+
+  .nav-book {
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500;
+    padding: 9px 22px; border: 1px solid rgba(255,255,255,0.55);
+    color: white; background: transparent; cursor: pointer; text-decoration: none; transition: all 0.3s;
+  }
+  .nav-book:hover { background: white; color: var(--dark); }
+  nav.scrolled .nav-book { border-color: var(--dark); color: var(--dark); }
+  nav.scrolled .nav-book:hover { background: var(--dark); color: white; }
+
+  /* ── HERO ── */
+  .hero { position: relative; height: 100vh; min-height: 700px; overflow: hidden; display: flex; align-items: flex-end; }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: url('photos/hotel-ansicht.jpeg') center/cover no-repeat;
+    transition: transform 8s ease;
+  }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.0) 40%, rgba(0,0,0,0.6) 100%); }
+  .hero-content { position: relative; z-index: 2; padding: 0 80px 80px; width: 100%; }
+  .hero-badge { display: inline-block; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.35); padding: 6px 16px; margin-bottom: 20px; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(52px, 7vw, 96px); font-weight: 300; color: white; line-height: 1.0; letter-spacing: -0.01em; margin-bottom: 20px; text-wrap: pretty; }
+  .hero-title em { font-style: italic; color: rgba(255,255,255,0.72); }
+  .hero-sub { font-size: 14px; color: rgba(255,255,255,0.65); letter-spacing: 0.04em; margin-bottom: 40px; font-weight: 300; }
+  .hero-cta { display: inline-flex; gap: 16px; align-items: center; }
+  .btn-primary { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; padding: 14px 36px; background: white; color: var(--dark); text-decoration: none; transition: all 0.3s; }
+  .btn-primary:hover { background: var(--green); color: white; }
+  .btn-ghost { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 400; padding: 14px 36px; border: 1px solid rgba(255,255,255,0.5); color: white; text-decoration: none; transition: all 0.3s; }
+  .btn-ghost:hover { background: rgba(255,255,255,0.15); }
+  .hero-scroll-hint { position: absolute; bottom: 36px; right: 80px; display: flex; align-items: center; gap: 12px; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5); z-index: 2; }
+  .scroll-line { width: 48px; height: 1px; background: rgba(255,255,255,0.4); }
+
+  /* ── STATS BAR ── */
+  .stats-bar { background: var(--dark); display: grid; grid-template-columns: repeat(4, 1fr); }
+  .stat-item { padding: 28px 40px; border-right: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column; gap: 4px; }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: white; line-height: 1; }
+  .stat-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+
+  /* ── ABOUT ── */
+  .about { display: grid; grid-template-columns: 1fr 1fr; min-height: 600px; }
+  .about-image { background: url('photos/nakas-hotel.jpg') center/cover no-repeat; min-height: 500px; }
+  .about-text { padding: 100px 80px; background: var(--sand); display: flex; flex-direction: column; justify-content: center; }
+  .label { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+  .label::before { content: ''; display: inline-block; width: 32px; height: 1px; background: var(--green); }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 4vw, 56px); font-weight: 300; line-height: 1.15; margin-bottom: 28px; text-wrap: pretty; }
+  .section-title em { font-style: italic; color: var(--green); }
+  .body-text { font-size: 15px; line-height: 1.8; color: var(--mid); font-weight: 300; margin-bottom: 20px; text-wrap: pretty; }
+  .about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 36px; }
+  .feature-chip { display: flex; align-items: center; gap: 10px; font-size: 12px; letter-spacing: 0.04em; color: var(--dark); font-weight: 400; }
+  .feature-chip svg { color: var(--green); flex-shrink: 0; }
+
+  /* ── ROOMS ── */
+  .rooms-section { padding: 100px 80px; }
+  .rooms-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; }
+  .rooms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .room-card { cursor: pointer; overflow: hidden; background: white; }
+  .room-card:hover .room-img { transform: scale(1.04); }
+  .room-img-wrap { overflow: hidden; aspect-ratio: 3/4; position: relative; }
+  .room-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; display: block; }
+  .room-tag { position: absolute; top: 16px; left: 16px; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; padding: 5px 12px; background: var(--green); color: white; font-weight: 500; }
+  .room-info { padding: 28px 24px 32px; }
+  .room-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; margin-bottom: 8px; }
+  .room-desc { font-size: 13px; line-height: 1.7; color: var(--mid); font-weight: 300; margin-bottom: 20px; }
+  .room-meta { display: flex; gap: 20px; flex-wrap: wrap; border-top: 1px solid var(--sand); padding-top: 16px; }
+  .room-meta-item { font-size: 11px; letter-spacing: 0.06em; color: var(--mid); display: flex; align-items: center; gap: 5px; }
+  .room-book-link { margin-top: 16px; display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); text-decoration: none; font-weight: 500; transition: gap 0.3s; }
+  .room-book-link:hover { gap: 14px; }
+
+  /* ── SERVICES ── */
+  .services-section { background: var(--dark); padding: 100px 80px; }
+  .services-section .label { color: var(--gold); }
+  .services-section .label::before { background: var(--gold); }
+  .services-section .section-title { color: white; }
+  .services-section .section-title em { color: var(--gold); }
+  .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.06); margin-top: 60px; border: 1px solid rgba(255,255,255,0.06); }
+  .service-item { padding: 48px 36px; background: var(--dark); transition: background 0.3s; }
+  .service-item:hover { background: oklch(22% 0.006 200); }
+  .service-num { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; color: rgba(255,255,255,0.08); line-height: 1; margin-bottom: 24px; }
+  .service-icon { width: 40px; height: 40px; background: rgba(255,255,255,0.06); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--gold); }
+  .service-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; color: white; margin-bottom: 10px; }
+  .service-desc { font-size: 13px; line-height: 1.7; color: rgba(255,255,255,0.45); font-weight: 300; }
+
+  /* ── GALLERY ── */
+  .gallery-section { padding: 100px 80px; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; margin-top: 60px; }
+  .gallery-item { overflow: hidden; cursor: pointer; }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  .gallery-item:hover img { transform: scale(1.04); }
+  .g1 { grid-column: span 5; aspect-ratio: 4/3; }
+  .g2 { grid-column: span 4; aspect-ratio: 3/4; }
+  .g3 { grid-column: span 3; aspect-ratio: 3/4; }
+  .g4 { grid-column: span 3; aspect-ratio: 1; }
+  .g5 { grid-column: span 4; aspect-ratio: 1; }
+  .g6 { grid-column: span 5; aspect-ratio: 4/3; }
+
+  /* ── LIGHTBOX ── */
+  .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 999; align-items: center; justify-content: center; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
+  .lightbox-close { position: absolute; top: 24px; right: 32px; color: white; font-size: 32px; cursor: pointer; line-height: 1; opacity: 0.7; transition: opacity 0.2s; }
+  .lightbox-close:hover { opacity: 1; }
+
+  /* ── LOCATION ── */
+  .location-section { display: grid; grid-template-columns: 1fr 1fr; }
+  .location-text { background: var(--green); padding: 100px 80px; display: flex; flex-direction: column; justify-content: center; }
+  .location-text .label { color: rgba(255,255,255,0.5); }
+  .location-text .label::before { background: rgba(255,255,255,0.4); }
+  .location-text .section-title { color: white; }
+  .location-text .section-title em { color: rgba(255,255,255,0.55); }
+  .location-text .body-text { color: rgba(255,255,255,0.7); }
+  .location-details { display: flex; flex-direction: column; gap: 20px; margin-top: 36px; }
+  .location-detail { display: flex; align-items: flex-start; gap: 14px; color: rgba(255,255,255,0.8); font-size: 14px; font-weight: 300; line-height: 1.5; }
+  .location-detail svg { flex-shrink: 0; margin-top: 2px; color: rgba(255,255,255,0.5); }
+  .location-map { position: relative; min-height: 500px; overflow: hidden; }
+  .location-map iframe { width: 100%; height: 100%; border: none; display: block; position: absolute; inset: 0; }
+
+  /* ── CONTACT ── */
+  .contact-section { padding: 100px 80px; background: var(--sand); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-field { display: flex; flex-direction: column; gap: 6px; }
+  .form-field label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); font-weight: 400; }
+  .form-field input, .form-field select, .form-field textarea { border: 1px solid rgba(0,0,0,0.12); background: white; padding: 12px 16px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--dark); outline: none; transition: border-color 0.3s; -webkit-appearance: none; }
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--green); }
+  .form-field textarea { resize: vertical; min-height: 100px; }
+  .btn-submit { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; padding: 15px 36px; background: var(--green); color: white; border: none; cursor: pointer; align-self: flex-start; transition: background 0.3s; margin-top: 8px; }
+  .btn-submit:hover { background: oklch(30% 0.08 148); }
+  .form-success { display: none; background: oklch(92% 0.05 148); border: 1px solid var(--green); padding: 16px 20px; font-size: 13px; color: var(--green); }
+
+  /* ── FOOTER ── */
+  footer { background: var(--dark); padding: 64px 80px 40px; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .footer-logo svg.logo-mark { width: 44px; height: 44px; color: white; }
+  .footer-logo-text { display: flex; flex-direction: column; line-height: 1; }
+  .footer-logo-text .wm-nakas { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: white; }
+  .footer-logo-text .wm-hotel { font-size: 8px; letter-spacing: 0.36em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 2px; }
+  .footer-brand p { font-size: 13px; line-height: 1.8; color: rgba(255,255,255,0.4); font-weight: 300; max-width: 260px; }
+  .footer-social { display: flex; gap: 12px; margin-top: 24px; }
+  .social-link { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); text-decoration: none; transition: all 0.3s; }
+  .social-link:hover { border-color: white; color: white; }
+  .footer-col h4 { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 20px; font-weight: 400; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a { font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; font-weight: 300; transition: color 0.3s; }
+  .footer-col ul li a:hover { color: white; }
+  .footer-col .contact-line { font-size: 13px; color: rgba(255,255,255,0.55); font-weight: 300; margin-bottom: 10px; display: flex; align-items: flex-start; gap: 8px; line-height: 1.5; }
+  .footer-col .contact-line svg { flex-shrink: 0; margin-top: 2px; color: rgba(255,255,255,0.3); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 32px; }
+  .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.25); letter-spacing: 0.04em; }
+
+  /* ── BOOKING BAR ── */
+  .booking-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 99; background: white; box-shadow: 0 -4px 32px rgba(0,0,0,0.12); padding: 16px 80px; display: flex; align-items: center; gap: 24px; transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
+  .booking-bar.visible { transform: translateY(0); }
+  .booking-bar-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); white-space: nowrap; }
+  .booking-date { display: flex; flex-direction: column; gap: 2px; }
+  .booking-date label { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); }
+  .booking-date input { border: none; border-bottom: 1px solid rgba(0,0,0,0.15); font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--dark); outline: none; padding: 4px 0; background: transparent; width: 130px; }
+  .booking-sep { width: 1px; height: 32px; background: rgba(0,0,0,0.1); }
+  .booking-bar a { margin-left: auto; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; padding: 12px 32px; background: var(--green); color: white; text-decoration: none; transition: background 0.3s; white-space: nowrap; }
+  .booking-bar a:hover { background: oklch(30% 0.08 148); }
+
+  /* ── BOOK DROPDOWN ── */
+  .book-dropdown { position: relative; }
+  .book-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background: white;
+    min-width: 220px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+    flex-direction: column;
+    z-index: 200;
+  }
+  .book-menu.open { display: flex; }
+  .book-option {
+    display: flex; flex-direction: column; gap: 2px;
+    padding: 14px 20px;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    transition: background 0.2s;
+  }
+  .book-option:last-child { border-bottom: none; }
+  .book-option:hover { background: var(--sand); }
+  .book-opt-label { font-size: 13px; font-weight: 500; color: var(--dark); }
+  .book-opt-sub { font-size: 11px; color: var(--mid); letter-spacing: 0.04em; }
+
+  /* Scroll animation base */
+  .anim-el { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .anim-el.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hero-content { padding: 0 32px 60px; }
+    .about { grid-template-columns: 1fr; }
+    .about-image { min-height: 320px; }
+    .about-text { padding: 60px 32px; }
+    .rooms-section { padding: 60px 32px; }
+    .rooms-grid { grid-template-columns: 1fr; gap: 32px; }
+    .rooms-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .services-section { padding: 60px 32px; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-section { padding: 60px 32px; }
+    .location-section { grid-template-columns: 1fr; }
+    .location-map { min-height: 360px; }
+    .contact-section { grid-template-columns: 1fr; padding: 60px 32px; gap: 48px; }
+    footer { padding: 48px 32px 32px; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
+    .stats-bar { grid-template-columns: 1fr 1fr; }
+    .booking-bar { padding: 16px 24px; flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <!-- Nakas Hotel Logo: double-N monogram in oval frame -->
+    <svg class="logo-mark" viewBox="0 0 100 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Oval border -->
+      <ellipse cx="50" cy="33" rx="42" ry="28" stroke="currentColor" stroke-width="2"/>
+      <!-- Left N: vertical, diagonal, vertical -->
+      <polyline points="18,53 18,13 40,53 40,13" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="miter" stroke-linecap="butt"/>
+      <!-- Right N (mirrored): vertical, diagonal (reversed), vertical -->
+      <polyline points="82,53 82,13 60,53 60,13" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="miter" stroke-linecap="butt"/>
+      <!-- NAKAS -->
+      <text x="50" y="72" text-anchor="middle" fill="currentColor" font-family="'DM Sans',sans-serif" font-size="12.5" font-weight="700" letter-spacing="5">NAKAS</text>
+      <!-- HOTEL -->
+      <text x="50" y="83" text-anchor="middle" fill="currentColor" font-family="'DM Sans',sans-serif" font-size="7" font-weight="300" letter-spacing="6" opacity="0.7">HOTEL</text>
+    </svg>
+  </a>
+
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#about" data-i18n="nav_about">Über uns</a></li>
+      <li><a href="#rooms" data-i18n="nav_rooms">Zimmer</a></li>
+      <li><a href="#services" data-i18n="nav_services">Services</a></li>
+      <li><a href="#gallery" data-i18n="nav_gallery">Galerie</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">Kontakt</a></li>
+    </ul>
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('de')">DE</button>
+      <div class="lang-sep"></div>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+      <div class="lang-sep"></div>
+      <button class="lang-btn" onclick="setLang('tr')">TR</button>
+      <div class="lang-sep"></div>
+      <button class="lang-btn" onclick="setLang('ru')">RU</button>
+      <div class="lang-sep"></div>
+      <button class="lang-btn" onclick="setLang('zh')">中文</button>
+    </div>
+    <div class="book-dropdown" id="bookDropdown">
+    <button class="nav-book" onclick="toggleBookMenu(event)" data-i18n="nav_book">Jetzt buchen ▾</button>
+    <div class="book-menu" id="bookMenu">
+      <a href="https://nakas.rezervasyonal.com/" target="_blank" class="book-option">
+        <span class="book-opt-label" data-i18n="book_direct">Direkt buchen</span>
+        <span class="book-opt-sub">rezervasyonal.com</span>
+      </a>
+      <a href="https://www.etstur.com/Nakas-Hotel" target="_blank" class="book-option">
+        <span class="book-opt-label">ETS Tur</span>
+        <span class="book-opt-sub">etstur.com</span>
+      </a>
+    </div>
+  </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge" data-i18n="hero_badge">Boutique Hotel · Fethiye, Türkei</div>
+    <h1 class="hero-title" data-i18n="hero_title">Willkommen<br>im <em>Nakas Hotel</em></h1>
+    <p class="hero-sub" data-i18n="hero_sub">100 Meter vom Meer · Fethiye Bucht · Modernes Boutique-Erlebnis</p>
+    <div class="hero-cta">
+      <a href="https://nakas.rezervasyonal.com/" target="_blank" class="btn-primary" data-i18n="hero_cta1">Zimmer reservieren</a>
+      <a href="#rooms" class="btn-ghost" data-i18n="hero_cta2">Zimmer entdecken</a>
+    </div>
+  </div>
+  <div class="hero-scroll-hint"><div class="scroll-line"></div><span data-i18n="hero_scroll">Entdecken</span></div>
+</section>
+
+<!-- ── STATS ── -->
+<div class="stats-bar">
+  <div class="stat-item anim-el"><div class="stat-num">9.8</div><div class="stat-label" data-i18n="stat1">Gästebewertung</div></div>
+  <div class="stat-item anim-el"><div class="stat-num">100m</div><div class="stat-label" data-i18n="stat2">Bis zum Meer</div></div>
+  <div class="stat-item anim-el"><div class="stat-num">3</div><div class="stat-label" data-i18n="stat3">Zimmertypen</div></div>
+  <div class="stat-item anim-el"><div class="stat-num">24h</div><div class="stat-label" data-i18n="stat4">Rezeption & Service</div></div>
+</div>
+
+<!-- ── ABOUT ── -->
+<section class="about" id="about">
+  <div class="about-image"></div>
+  <div class="about-text">
+    <div class="label" data-i18n="about_label">Über uns</div>
+    <h2 class="section-title" data-i18n="about_title">Moderner Luxus<br>an der <em>Ägäis</em></h2>
+    <p class="body-text" data-i18n="about_p1">Das Nakas Hotel liegt im Herzen von Fethiye, mit atemberaubendem Blick auf den türkisblauen Golf. Ein modernes Boutique-Hotel, das zeitloses Design mit echter Gastfreundschaft verbindet.</p>
+    <p class="body-text" data-i18n="about_p2">Ob Penthouse mit Panoramablick, stilvolles Standardzimmer oder unser besonderer Gartenbereich – jedes Zimmer ist ein Rückzugsort mit Charakter.</p>
+    <div class="about-features">
+      <div class="feature-chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-i18n="feat1">Zentrale Lage</span></div>
+      <div class="feature-chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 20h20M4 20V10l8-6 8 6v10"/></svg><span data-i18n="feat2">100m zum Strand</span></div>
+      <div class="feature-chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0M12 20h.01"/></svg><span data-i18n="feat3">Kostenloses WLAN</span></div>
+      <div class="feature-chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span data-i18n="feat4">24h-Service</span></div>
+      <div class="feature-chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/></svg><span data-i18n="feat5">Alle Zimmer klimatisiert</span></div>
+      <div class="feature-chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg><span data-i18n="feat6">VIP Transfer</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ROOMS ── -->
+<section class="rooms-section" id="rooms">
+  <div class="rooms-header">
+    <div>
+      <div class="label" data-i18n="rooms_label">Unsere Zimmer</div>
+      <h2 class="section-title" data-i18n="rooms_title">Für Ihren<br>perfekten <em>Aufenthalt</em></h2>
+    </div>
+    <a href="https://nakas.rezervasyonal.com/" target="_blank" class="btn-primary" style="flex-shrink:0;" data-i18n="rooms_all">Alle Zimmer buchen</a>
+  </div>
+  <div class="rooms-grid">
+    <div class="room-card anim-el">
+      <div class="room-img-wrap">
+        <img src="photos/img30.jpeg" alt="Penthouse" class="room-img" loading="lazy">
+        <div class="room-tag">Penthouse</div>
+      </div>
+      <div class="room-info">
+        <div class="room-name">Penthouse Oda</div>
+        <p class="room-desc" data-i18n="room1_desc">37 m² ultra-luxuriös mit privatem Balkon und Panoramablick über Fethiye oder die malerischen Berge.</p>
+        <div class="room-meta">
+          <div class="room-meta-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="1"/></svg>37 m²</div>
+          <div class="room-meta-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span data-i18n="balcony">Balkon</span></div>
+          <div class="room-meta-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><path d="M8 2v16M16 6v16"/></svg><span data-i18n="seaview">Meeresblick</span></div>
+        </div>
+        <a href="https://nakas.rezervasyonal.com/" target="_blank" class="room-book-link" data-i18n="book_now">Buchen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+    <div class="room-card anim-el">
+      <div class="room-img-wrap">
+        <img src="photos/img40.jpeg" alt="Standard" class="room-img" loading="lazy">
+        <div class="room-tag" style="background:var(--terra);" data-i18n="tag_standard">Standard</div>
+      </div>
+      <div class="room-info">
+        <div class="room-name">Standart Oda</div>
+        <p class="room-desc" data-i18n="room2_desc">Elegant mit warmen Erdtönen, Betondecke und modernem Bad. Verfügbar mit Straßen- oder Stadtblick.</p>
+        <div class="room-meta">
+          <div class="room-meta-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="1"/></svg><span data-i18n="comfort">Komfort</span></div>
+          <div class="room-meta-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span data-i18n="balcony">Balkon</span></div>
+          <div class="room-meta-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Smart TV</div>
+        </div>
+        <a href="https://nakas.rezervasyonal.com/" target="_blank" class="room-book-link" data-i18n="book_now">Buchen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+    <div class="room-card anim-el">
+      <div class="room-img-wrap">
+        <img src="photos/garten.jpeg" alt="Garten" class="room-img" loading="lazy">
+        <div class="room-tag" style="background:oklch(55% 0.08 78);" data-i18n="tag_garden">Garten</div>
+      </div>
+      <div class="room-info">
+        <div class="room-name">Bahçeli Oda</div>
+        <p class="room-desc" data-i18n="room3_desc">Privatgarten direkt vom Zimmer – Natur und Ruhe im Herzen von Fethiye.</p>
+        <div class="room-meta">
+          <div class="room-meta-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a10 10 0 010 20M12 2C6.5 2 2 6.5 2 12M12 2c2.5 3 4 7 4 10s-1.5 7-4 10"/></svg><span data-i18n="privgarden">Privatgarten</span></div>
+          <div class="room-meta-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span data-i18n="quiet">Ruhig</span></div>
+        </div>
+        <a href="https://nakas.rezervasyonal.com/" target="_blank" class="room-book-link" data-i18n="book_now">Buchen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section class="services-section" id="services">
+  <div class="label" data-i18n="services_label">Was wir bieten</div>
+  <h2 class="section-title" data-i18n="services_title">Exklusiver Service<br>für <em>unvergessliche</em> Momente</h2>
+  <div class="services-grid">
+    <div class="service-item anim-el">
+      <div class="service-num">01</div>
+      <div class="service-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8zM1 18h18"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+      <div class="service-title" data-i18n="s1_title">VIP Transfer</div>
+      <p class="service-desc" data-i18n="s1_desc">Komfortabler Transfer zwischen Flughafen Dalaman und Hotel.</p>
+    </div>
+    <div class="service-item anim-el">
+      <div class="service-num">02</div>
+      <div class="service-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 2a15 15 0 010 20M2 12h20"/></svg></div>
+      <div class="service-title" data-i18n="s2_title">Stadttouren</div>
+      <p class="service-desc" data-i18n="s2_desc">Ölüdeniz, Kayaköy, Lykische Felsen – wir organisieren Ihre Tour.</p>
+    </div>
+    <div class="service-item anim-el">
+      <div class="service-num">03</div>
+      <div class="service-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17l9-9 9 9"/><path d="M8 12l4-4 4 4"/></svg></div>
+      <div class="service-title" data-i18n="s3_title">Meeresnähe</div>
+      <p class="service-desc" data-i18n="s3_desc">Nur 100 m vom Strand. Die Fethiye-Bucht wartet direkt vor Ihrer Tür.</p>
+    </div>
+    <div class="service-item anim-el">
+      <div class="service-num">04</div>
+      <div class="service-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg></div>
+      <div class="service-title" data-i18n="s4_title">Panorama-Terrasse</div>
+      <p class="service-desc" data-i18n="s4_desc">Sonnenuntergang über dem Golf von Fethiye auf unserer Dachterrasse genießen.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── GALLERY ── -->
+<section class="gallery-section" id="gallery">
+  <div class="label" data-i18n="gallery_label">Galerie</div>
+  <h2 class="section-title" data-i18n="gallery_title">Bilder, die <em>begeistern</em></h2>
+  <div class="gallery-grid">
+    <div class="gallery-item g1 anim-el" onclick="openLightbox('photos/hotel-ansicht.jpeg')"><img src="photos/hotel-ansicht.jpeg" alt="Hotel" loading="lazy"></div>
+    <div class="gallery-item g2 anim-el" onclick="openLightbox('photos/img30.jpeg')"><img src="photos/img30.jpeg" alt="Penthouse" loading="lazy"></div>
+    <div class="gallery-item g3 anim-el" onclick="openLightbox('photos/wa1.jpeg')"><img src="photos/wa1.jpeg" alt="Bett" loading="lazy"></div>
+    <div class="gallery-item g4 anim-el" onclick="openLightbox('photos/img10.jpeg')"><img src="photos/img10.jpeg" alt="Bad" loading="lazy"></div>
+    <div class="gallery-item g5 anim-el" onclick="openLightbox('photos/img20.jpeg')"><img src="photos/img20.jpeg" alt="Zimmer" loading="lazy"></div>
+    <div class="gallery-item g6 anim-el" onclick="openLightbox('photos/garten.jpeg')"><img src="photos/garten.jpeg" alt="Garten" loading="lazy"></div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">&times;</span>
+  <img src="" id="lightboxImg" alt="" onclick="event.stopPropagation()">
+</div>
+
+<!-- ── LOCATION ── -->
+<section class="location-section" id="location">
+  <div class="location-text">
+    <div class="label" data-i18n="loc_label">Anreise & Lage</div>
+    <h2 class="section-title" data-i18n="loc_title">Im Herzen<br>von <em>Fethiye</em></h2>
+    <p class="body-text" data-i18n="loc_desc">Nakas Hotel befindet sich in der Tuzla-Straße, nur wenige Schritte vom Fethiye-Golf, Restaurants und Sehenswürdigkeiten entfernt.</p>
+    <div class="location-details">
+      <div class="location-detail"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg>Tuzla, 531. Sk. No:6, 48300 Fethiye/Muğla</div>
+      <div class="location-detail"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 12 19.79 19.79 0 01.88 3.38 2 2 0 012.86 1.21h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>+90 530 704 68 93</div>
+      <div class="location-detail"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>info@nakashotel.com</div>
+      <div class="location-detail"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span data-i18n="loc_transfer">Ca. 45 Min. vom Flughafen Dalaman (DLM)</span></div>
+    </div>
+  </div>
+  <div class="location-map">
+    <iframe
+      src="https://maps.google.com/maps?q=Nakas+Hotel+Fethiye+Mugla+Turkey&output=embed&z=17"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Nakas Hotel – Google Maps">
+    </iframe>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="contact-section" id="contact">
+  <div>
+    <div class="label" data-i18n="contact_label">Kontakt</div>
+    <h2 class="section-title" data-i18n="contact_title">Wir freuen uns<br>auf <em>Ihre Nachricht</em></h2>
+    <p class="body-text" data-i18n="contact_desc">Haben Sie Fragen zur Buchung oder zum Aufenthalt? Schreiben Sie uns – wir antworten so schnell wie möglich.</p>
+    <div style="margin-top:36px; display:flex; flex-direction:column; gap:20px;">
+      <div class="feature-chip" style="gap:12px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 12 19.79 19.79 0 01.88 3.38 2 2 0 012.86 1.21h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        <div><div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);" data-i18n="ct_phone">Telefon</div><div style="font-size:15px;margin-top:2px;">+90 530 704 68 93</div></div>
+      </div>
+      <div class="feature-chip" style="gap:12px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <div><div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);" data-i18n="ct_email">E-Mail</div><div style="font-size:15px;margin-top:2px;">info@nakashotel.com</div></div>
+      </div>
+      <div class="feature-chip" style="gap:12px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"/></svg>
+        <div><div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);">Instagram</div><div style="font-size:15px;margin-top:2px;">@nakas.hotel</div></div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <form class="contact-form" id="contactForm" onsubmit="submitForm(event)">
+      <div class="form-row">
+        <div class="form-field"><label data-i18n="f_first">Vorname</label><input type="text" required></div>
+        <div class="form-field"><label data-i18n="f_last">Nachname</label><input type="text" required></div>
+      </div>
+      <div class="form-field"><label data-i18n="f_email">E-Mail</label><input type="email" required></div>
+      <div class="form-row">
+        <div class="form-field"><label data-i18n="f_checkin">Anreise</label><input type="date"></div>
+        <div class="form-field"><label data-i18n="f_checkout">Abreise</label><input type="date"></div>
+      </div>
+      <div class="form-field">
+        <label data-i18n="f_room">Zimmertyp</label>
+        <select>
+          <option value="" data-i18n="f_select">Bitte wählen</option>
+          <option>Penthouse Oda</option>
+          <option>Standart Oda</option>
+          <option>Bahçeli Oda</option>
+        </select>
+      </div>
+      <div class="form-field"><label data-i18n="f_msg">Nachricht</label><textarea></textarea></div>
+      <button type="submit" class="btn-submit" data-i18n="f_send">Nachricht senden</button>
+      <div class="form-success" id="formSuccess" data-i18n="f_success">Vielen Dank! Wir melden uns so schnell wie möglich.</div>
+    </form>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <svg class="logo-mark" viewBox="0 0 100 88" fill="none">
+          <ellipse cx="50" cy="33" rx="42" ry="28" stroke="currentColor" stroke-width="2"/>
+          <polyline points="18,53 18,13 40,53 40,13" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="miter" stroke-linecap="butt"/>
+          <polyline points="82,53 82,13 60,53 60,13" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="miter" stroke-linecap="butt"/>
+          <text x="50" y="72" text-anchor="middle" fill="currentColor" font-family="'DM Sans',sans-serif" font-size="12.5" font-weight="700" letter-spacing="5">NAKAS</text>
+          <text x="50" y="83" text-anchor="middle" fill="currentColor" font-family="'DM Sans',sans-serif" font-size="7" font-weight="300" letter-spacing="6" opacity="0.5">HOTEL</text>
+        </svg>
+        <div class="footer-logo-text">
+          <span class="wm-nakas">Nakas Hotel</span>
+          <span class="wm-hotel">Fethiye, Türkiye</span>
+        </div>
+      </div>
+      <p data-i18n="footer_desc">Ein modernes Boutique-Hotel in Fethiye, Türkei – wo Design, Natur und Gastfreundschaft zusammenkommen.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/nakas.hotel/" target="_blank" class="social-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"/></svg></a>
+        <a href="https://www.facebook.com/profile.php?id=61575999142790" target="_blank" class="social-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_rooms">Zimmer</h4>
+      <ul>
+        <li><a href="#">Penthouse Oda</a></li>
+        <li><a href="#">Standart Oda</a></li>
+        <li><a href="#">Bahçeli Oda</a></li>
+        <li><a href="https://nakas.rezervasyonal.com/" target="_blank" data-i18n="nav_book">Direkt buchen</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_hotel">Hotel</h4>
+      <ul>
+        <li><a href="#about" data-i18n="nav_about">Über uns</a></li>
+        <li><a href="#services" data-i18n="nav_services">Services</a></li>
+        <li><a href="#gallery" data-i18n="nav_gallery">Galerie</a></li>
+        <li><a href="#contact" data-i18n="nav_contact">Kontakt</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_contact">Kontakt</h4>
+      <div class="contact-line"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg>Tuzla, 531. Sk. No:6<br>48300 Fethiye/Muğla</div>
+      <div class="contact-line"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2c-4.16-.5-8.08-2.3-11.29-5.5S2 9.16 1.5 5A2 2 0 013.48 3h3a2 2 0 012 1.72c.13.96.35 1.9.66 2.81a2 2 0 01-.45 2.11L7.09 10.7a16 16 0 006 6l1.06-1.06a2 2 0 012.11-.45c.91.31 1.85.53 2.81.66A2 2 0 0122 17.03v3z"/></svg>+90 530 704 68 93</div>
+      <div class="contact-line"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>info@nakashotel.com</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Nakas Hotel. <span data-i18n="footer_rights">Alle Rechte vorbehalten.</span></p>
+    <p>Fethiye, Muğla, Türkiye</p>
+  </div>
+</footer>
+
+<!-- ── BOOKING BAR ── -->
+<div class="booking-bar" id="bookingBar">
+  <div class="booking-bar-label" data-i18n="book_quick">Schnellbuchung</div>
+  <div class="booking-sep"></div>
+  <div class="booking-date"><label data-i18n="f_checkin">Anreise</label><input type="date" id="barCheckin"></div>
+  <div class="booking-sep"></div>
+  <div class="booking-date"><label data-i18n="f_checkout">Abreise</label><input type="date" id="barCheckout"></div>
+  <div class="booking-sep"></div>
+  <a href="https://nakas.rezervasyonal.com/" target="_blank" data-i18n="nav_book">Jetzt buchen →</a>
+</div>
+
+<script>
+// ── TRANSLATIONS ──
+const i18n = {
+  de: {
+    nav_about:'Über uns', nav_rooms:'Zimmer', nav_services:'Services', nav_gallery:'Galerie', nav_contact:'Kontakt', nav_book:'Jetzt buchen',
+    hero_badge:'Boutique Hotel · Fethiye, Türkei',
+    hero_title:'Willkommen<br>im <em>Nakas Hotel</em>',
+    hero_sub:'100 Meter vom Meer · Fethiye Bucht · Modernes Boutique-Erlebnis',
+    hero_cta1:'Zimmer reservieren', hero_cta2:'Zimmer entdecken', hero_scroll:'Entdecken',
+    stat1:'Gästebewertung', stat2:'Bis zum Meer', stat3:'Zimmertypen', stat4:'Rezeption & Service',
+    about_label:'Über uns', about_title:'Moderner Luxus<br>an der <em>Ägäis</em>',
+    about_p1:'Das Nakas Hotel liegt im Herzen von Fethiye, mit atemberaubendem Blick auf den türkisblauen Golf. Ein modernes Boutique-Hotel, das zeitloses Design mit echter Gastfreundschaft verbindet.',
+    about_p2:'Ob Penthouse mit Panoramablick, stilvolles Standardzimmer oder unser besonderer Gartenbereich – jedes Zimmer ist ein Rückzugsort mit Charakter.',
+    feat1:'Zentrale Lage', feat2:'100m zum Strand', feat3:'Kostenloses WLAN', feat4:'24h-Service', feat5:'Alle Zimmer klimatisiert', feat6:'VIP Transfer',
+    rooms_label:'Unsere Zimmer', rooms_title:'Für Ihren<br>perfekten <em>Aufenthalt</em>', rooms_all:'Alle Zimmer buchen',
+    room1_desc:'37 m² ultra-luxuriös mit privatem Balkon und Panoramablick über Fethiye oder die malerischen Berge.',
+    room2_desc:'Elegant mit warmen Erdtönen, Betondecke und modernem Bad. Verfügbar mit Straßen- oder Stadtblick.',
+    room3_desc:'Privatgarten direkt vom Zimmer – Natur und Ruhe im Herzen von Fethiye.',
+    balcony:'Balkon', seaview:'Meeresblick', comfort:'Komfort', privgarden:'Privatgarten', quiet:'Ruhig',
+    book_now:'Buchen', tag_standard:'Standard', tag_garden:'Garten',
+    services_label:'Was wir bieten', services_title:'Exklusiver Service<br>für <em>unvergessliche</em> Momente',
+    s1_title:'VIP Transfer', s1_desc:'Komfortabler Transfer zwischen Flughafen Dalaman und Hotel.',
+    s2_title:'Stadttouren', s2_desc:'Ölüdeniz, Kayaköy, Lykische Felsen – wir organisieren Ihre Tour.',
+    s3_title:'Meeresnähe', s3_desc:'Nur 100 m vom Strand. Die Fethiye-Bucht wartet direkt vor Ihrer Tür.',
+    s4_title:'Panorama-Terrasse', s4_desc:'Sonnenuntergang über dem Golf von Fethiye auf unserer Dachterrasse genießen.',
+    gallery_label:'Galerie', gallery_title:'Bilder, die <em>begeistern</em>',
+    loc_label:'Anreise & Lage', loc_title:'Im Herzen<br>von <em>Fethiye</em>',
+    loc_desc:'Nakas Hotel befindet sich in der Tuzla-Straße, nur wenige Schritte vom Fethiye-Golf, Restaurants und Sehenswürdigkeiten entfernt.',
+    loc_transfer:'Ca. 45 Min. vom Flughafen Dalaman (DLM)',
+    contact_label:'Kontakt', contact_title:'Wir freuen uns<br>auf <em>Ihre Nachricht</em>',
+    contact_desc:'Haben Sie Fragen zur Buchung oder zum Aufenthalt? Schreiben Sie uns.',
+    ct_phone:'Telefon', ct_email:'E-Mail',
+    f_first:'Vorname', f_last:'Nachname', f_email:'E-Mail', f_checkin:'Anreise', f_checkout:'Abreise',
+    f_room:'Zimmertyp', f_select:'Bitte wählen', f_msg:'Nachricht', f_send:'Nachricht senden',
+    f_success:'Vielen Dank! Wir melden uns so schnell wie möglich.',
+    footer_desc:'Ein modernes Boutique-Hotel in Fethiye, Türkei – wo Design, Natur und Gastfreundschaft zusammenkommen.',
+    footer_rooms:'Zimmer', footer_hotel:'Hotel', footer_contact:'Kontakt', footer_rights:'Alle Rechte vorbehalten.',
+    book_quick:'Schnellbuchung', book_direct:'Direkt buchen'
+  },
+  en: {
+    nav_about:'About', nav_rooms:'Rooms', nav_services:'Services', nav_gallery:'Gallery', nav_contact:'Contact', nav_book:'Book Now',
+    hero_badge:'Boutique Hotel · Fethiye, Turkey',
+    hero_title:'Welcome to<br><em>Nakas Hotel</em>',
+    hero_sub:'100 Metres from the Sea · Fethiye Bay · Modern Boutique Experience',
+    hero_cta1:'Reserve a Room', hero_cta2:'Explore Rooms', hero_scroll:'Discover',
+    stat1:'Guest Rating', stat2:'To the Sea', stat3:'Room Types', stat4:'Reception & Service',
+    about_label:'About Us', about_title:'Modern Luxury<br>on the <em>Aegean</em>',
+    about_p1:'Nakas Hotel is located in the heart of Fethiye, with breathtaking views of the turquoise bay. A modern boutique hotel that blends timeless design with genuine hospitality.',
+    about_p2:'Whether a panoramic penthouse, stylish standard room or our unique garden suite – every room is a retreat with character.',
+    feat1:'Central Location', feat2:'100m to the Beach', feat3:'Free Wi-Fi', feat4:'24h Service', feat5:'All Rooms Air-Conditioned', feat6:'VIP Transfer',
+    rooms_label:'Our Rooms', rooms_title:'For Your<br>Perfect <em>Stay</em>', rooms_all:'Book All Rooms',
+    room1_desc:'37 m² ultra-luxury with private balcony and panoramic views over Fethiye or the picturesque mountains.',
+    room2_desc:'Elegant with warm earth tones, concrete ceiling and modern bathroom. Available with street or city view.',
+    room3_desc:'Private garden directly from your room – nature and tranquillity in the heart of Fethiye.',
+    balcony:'Balcony', seaview:'Sea View', comfort:'Comfort', privgarden:'Private Garden', quiet:'Quiet',
+    book_now:'Book', tag_standard:'Standard', tag_garden:'Garden',
+    services_label:'What We Offer', services_title:'Exclusive Service<br>for <em>Unforgettable</em> Moments',
+    s1_title:'VIP Transfer', s1_desc:'Comfortable transfer between Dalaman Airport and the hotel.',
+    s2_title:'City Tours', s2_desc:'Ölüdeniz, Kayaköy, Lycian Rocks – we arrange your tour.',
+    s3_title:'Near the Sea', s3_desc:'Just 100 m from the beach. Fethiye Bay awaits right at your doorstep.',
+    s4_title:'Panoramic Terrace', s4_desc:'Watch the sunset over the Gulf of Fethiye from our rooftop terrace.',
+    gallery_label:'Gallery', gallery_title:'Images that <em>inspire</em>',
+    loc_label:'Getting Here', loc_title:'In the Heart<br>of <em>Fethiye</em>',
+    loc_desc:'Nakas Hotel is located on Tuzla Street, just steps from the Fethiye Gulf, restaurants and attractions.',
+    loc_transfer:'Approx. 45 min. from Dalaman Airport (DLM)',
+    contact_label:'Contact', contact_title:'We Look Forward<br>to <em>Hearing from You</em>',
+    contact_desc:'Questions about your booking or stay? Write to us and we\'ll respond as quickly as possible.',
+    ct_phone:'Phone', ct_email:'E-Mail',
+    f_first:'First Name', f_last:'Last Name', f_email:'E-Mail', f_checkin:'Check-in', f_checkout:'Check-out',
+    f_room:'Room Type', f_select:'Please select', f_msg:'Message', f_send:'Send Message',
+    f_success:'Thank you! We will get back to you as soon as possible.',
+    footer_desc:'A modern boutique hotel in Fethiye, Turkey – where design, nature and hospitality come together.',
+    footer_rooms:'Rooms', footer_hotel:'Hotel', footer_contact:'Contact', footer_rights:'All rights reserved.',
+    book_quick:'Quick Booking', book_direct:'Book Direct'
+  },
+  ru: {
+    nav_about:'О нас', nav_rooms:'Номера', nav_services:'Услуги', nav_gallery:'Галерея', nav_contact:'Контакты', nav_book:'Забронировать',
+    hero_badge:'Бутик-отель · Фетхие, Турция',
+    hero_title:'Добро пожаловать<br>в <em>Nakas Hotel</em>',
+    hero_sub:'100 метров от моря · Залив Фетхие · Современный бутик-отель',
+    hero_cta1:'Забронировать номер', hero_cta2:'Смотреть номера', hero_scroll:'Открыть',
+    stat1:'Рейтинг гостей', stat2:'До моря', stat3:'Типа номеров', stat4:'Ресепшн и сервис',
+    about_label:'О нас', about_title:'Современная роскошь<br>на берегу <em>Эгейского моря</em>',
+    about_p1:'Nakas Hotel расположен в самом центре Фетхие с захватывающим видом на бирюзовый залив. Современный бутик-отель, сочетающий изысканный дизайн с подлинным гостеприимством.',
+    about_p2:'Пентхаус с панорамным видом, стильный стандартный номер или наш особый садовый номер – каждый из них станет вашим уютным убежищем.',
+    feat1:'Центральное расположение', feat2:'100м до пляжа', feat3:'Бесплатный Wi-Fi', feat4:'Круглосуточный сервис', feat5:'Кондиционер в каждом номере', feat6:'VIP трансфер',
+    rooms_label:'Наши номера', rooms_title:'Для вашего<br>идеального <em>отдыха</em>', rooms_all:'Забронировать',
+    room1_desc:'37 м² ультра-люкс с частным балконом и панорамным видом на Фетхие или горы.',
+    room2_desc:'Элегантный номер в тёплых земляных тонах, с бетонным потолком и современной ванной.',
+    room3_desc:'Частный сад прямо из вашего номера – природа и покой в самом сердце Фетхие.',
+    balcony:'Балкон', seaview:'Вид на море', comfort:'Комфорт', privgarden:'Частный сад', quiet:'Тихий',
+    book_now:'Забронировать', tag_standard:'Стандарт', tag_garden:'Сад',
+    services_label:'Что мы предлагаем', services_title:'Эксклюзивный сервис<br>для <em>незабываемого</em> отдыха',
+    s1_title:'VIP трансфер', s1_desc:'Комфортный трансфер между аэропортом Даламан и отелем.',
+    s2_title:'Экскурсии', s2_desc:'Олюдениз, Каякёй, Ликийские скалы – мы организуем вашу поездку.',
+    s3_title:'Рядом с морем', s3_desc:'Всего 100 м до пляжа. Залив Фетхие у вашего порога.',
+    s4_title:'Панорамная терраса', s4_desc:'Наслаждайтесь закатом над заливом Фетхие на нашей террасе.',
+    gallery_label:'Галерея', gallery_title:'Фотографии, которые <em>вдохновляют</em>',
+    loc_label:'Как добраться', loc_title:'В самом сердце<br><em>Фетхие</em>',
+    loc_desc:'Nakas Hotel расположен на улице Тузла, в нескольких шагах от залива, ресторанов и достопримечательностей.',
+    loc_transfer:'Около 45 мин. от аэропорта Даламан (DLM)',
+    contact_label:'Контакты', contact_title:'Мы рады<br><em>вашему сообщению</em>',
+    contact_desc:'Есть вопросы о бронировании или проживании? Напишите нам – ответим как можно скорее.',
+    ct_phone:'Телефон', ct_email:'Эл. почта',
+    f_first:'Имя', f_last:'Фамилия', f_email:'Эл. почта', f_checkin:'Заезд', f_checkout:'Выезд',
+    f_room:'Тип номера', f_select:'Пожалуйста, выберите', f_msg:'Сообщение', f_send:'Отправить',
+    f_success:'Спасибо! Мы свяжемся с вами в ближайшее время.',
+    footer_desc:'Современный бутик-отель в Фетхие, Турция – там, где дизайн, природа и гостеприимство встречаются.',
+    footer_rooms:'Номера', footer_hotel:'Отель', footer_contact:'Контакты', footer_rights:'Все права защищены.',
+    book_quick:'Быстрое бронирование', book_direct:'Напрямую'
+  },
+  zh: {
+    nav_about:'关于我们', nav_rooms:'客房', nav_services:'服务', nav_gallery:'图库', nav_contact:'联系我们', nav_book:'立即预订',
+    hero_badge:'精品酒店 · 土耳其费特希耶',
+    hero_title:'欢迎来到<br><em>Nakas 酒店</em>',
+    hero_sub:'距海边100米 · 费特希耶湾 · 现代精品体验',
+    hero_cta1:'预订客房', hero_cta2:'探索客房', hero_scroll:'探索',
+    stat1:'宾客评分', stat2:'至海边距离', stat3:'房型种类', stat4:'前台与服务',
+    about_label:'关于我们', about_title:'爱琴海畔<br><em>现代奢华</em>',
+    about_p1:'Nakas 酒店位于费特希耶市中心，坐拥土耳其蓝色海湾的绝美景色。这是一家将永恒设计与真诚待客融为一体的现代精品酒店。',
+    about_p2:'无论是拥有全景视野的顶层套房、典雅的标准客房，还是我们独特的花园客房——每间房间都是充满个性的温馨栖所。',
+    feat1:'中心位置', feat2:'距海滩100米', feat3:'免费Wi-Fi', feat4:'24小时服务', feat5:'全室空调', feat6:'VIP接送',
+    rooms_label:'我们的客房', rooms_title:'为您的<br>完美 <em>旅程</em>', rooms_all:'预订所有客房',
+    room1_desc:'37平方米超豪华客房，设有私人阳台，可俯瞰费特希耶或秀丽山景。',
+    room2_desc:'优雅的暖土色调、混凝土天花板与现代浴室。可选街景或城市景观。',
+    room3_desc:'从客房直接通往私家花园——费特希耶市中心的自然与宁静。',
+    balcony:'阳台', seaview:'海景', comfort:'舒适', privgarden:'私家花园', quiet:'安静',
+    book_now:'预订', tag_standard:'标准', tag_garden:'花园',
+    services_label:'我们的服务', services_title:'专属服务<br>成就<em>难忘</em>时光',
+    s1_title:'VIP接送', s1_desc:'提供达拉曼机场与酒店之间的舒适专车服务。',
+    s2_title:'城市游览', s2_desc:'厄吕代尼兹、卡亚村、吕西亚岩石——我们为您安排行程。',
+    s3_title:'近海', s3_desc:'距海滩仅100米，费特希耶湾就在您门前。',
+    s4_title:'全景露台', s4_desc:'在我们的屋顶露台欣赏费特希耶湾日落美景。',
+    gallery_label:'图库', gallery_title:'令人<em>心动</em>的画面',
+    loc_label:'交通与位置', loc_title:'费特希耶<br><em>中心地带</em>',
+    loc_desc:'Nakas 酒店位于图兹拉街，距费特希耶湾、餐厅和景点仅数步之遥。',
+    loc_transfer:'距达拉曼机场约45分钟（DLM）',
+    contact_label:'联系我们', contact_title:'期待<br><em>您的来信</em>',
+    contact_desc:'关于预订或住宿有任何问题？请写信给我们，我们将尽快回复。',
+    ct_phone:'电话', ct_email:'电子邮件',
+    f_first:'名字', f_last:'姓氏', f_email:'电子邮件', f_checkin:'入住', f_checkout:'退房',
+    f_room:'房型', f_select:'请选择', f_msg:'留言', f_send:'发送留言',
+    f_success:'感谢您！我们将尽快与您联系。',
+    footer_desc:'土耳其费特希耶的现代精品酒店——设计、自然与热情好客在此相遇。',
+    footer_rooms:'客房', footer_hotel:'酒店', footer_contact:'联系方式', footer_rights:'版权所有。',
+    book_quick:'快速预订', book_direct:'直接预订'
+  },
+  tr: {
+    nav_about:'Hakkımızda', nav_rooms:'Odalar', nav_services:'Hizmetler', nav_gallery:'Galeri', nav_contact:'İletişim', nav_book:'Rezervasyon',
+    hero_badge:'Butik Otel · Fethiye, Türkiye',
+    hero_title:'Nakas Hotel\'e<br><em>Hoş Geldiniz</em>',
+    hero_sub:'Denize 100 Metre · Fethiye Körfezi · Modern Butik Deneyim',
+    hero_cta1:'Oda Rezervasyonu', hero_cta2:'Odaları Keşfedin', hero_scroll:'Keşfet',
+    stat1:'Misafir Puanı', stat2:'Denize Mesafe', stat3:'Oda Tipi', stat4:'Resepsiyon & Hizmet',
+    about_label:'Hakkımızda', about_title:'Modern Lüks<br><em>Ege Kıyısında</em>',
+    about_p1:'Nakas Hotel, turkuaz körfeze hakim eşsiz manzarasıyla Fethiye\'nin merkezinde yer almaktadır. Zamansız tasarımı gerçek misafirperverlikle buluşturan modern bir butik oteldir.',
+    about_p2:'Panoramik manzaralı penthouse, şık standart oda ya da özel bahçeli odamız – her oda kendi karakteriyle bir sığınak.',
+    feat1:'Merkezi Konum', feat2:'Denize 100m', feat3:'Ücretsiz Wi-Fi', feat4:'24 Saat Hizmet', feat5:'Tüm Odalar Klimalı', feat6:'VIP Transfer',
+    rooms_label:'Odalarımız', rooms_title:'Mükemmel<br><em>Konaklamanız</em> İçin', rooms_all:'Tüm Odaları Kirala',
+    room1_desc:'37 m² ultra lüks, özel balkon ve Fethiye veya dağ manzarasıyla.',
+    room2_desc:'Sıcak toprak tonları, beton tavan ve modern banyosuyla zarif. Cadde veya şehir manzaralı seçenekler.',
+    room3_desc:'Odanızdan doğrudan özel bahçeye çıkın – Fethiye\'nin kalbinde doğa ve huzur.',
+    balcony:'Balkon', seaview:'Deniz Manzarası', comfort:'Konfor', privgarden:'Özel Bahçe', quiet:'Sakin',
+    book_now:'Kirala', tag_standard:'Standart', tag_garden:'Bahçe',
+    services_label:'Sunduklarımız', services_title:'Unutulmaz Anlar İçin<br><em>Özel</em> Hizmetler',
+    s1_title:'VIP Transfer', s1_desc:'Dalaman Havalimanı ile otel arasında konforlu transfer hizmeti.',
+    s2_title:'Şehir Turları', s2_desc:'Ölüdeniz, Kayaköy, Likya Kayalıkları – turunuzu biz düzenliyoruz.',
+    s3_title:'Denize Yakın', s3_desc:'Sahile sadece 100 m. Fethiye Körfezi kapınızın önünde.',
+    s4_title:'Panoramik Teras', s4_desc:'Geniş çatı terasımızdan Fethiye Körfezi\'nin günbatımını izleyin.',
+    gallery_label:'Galeri', gallery_title:'İlham Veren <em>Kareler</em>',
+    loc_label:'Ulaşım & Konum', loc_title:'Fethiye\'nin<br><em>Kalbinde</em>',
+    loc_desc:'Nakas Hotel, Fethiye Körfezi\'ne, restoranlara ve gezilecek yerlere yürüme mesafesindeki Tuzla Sokak\'ta yer almaktadır.',
+    loc_transfer:'Dalaman Havalimanı\'na yaklaşık 45 dakika (DLM)',
+    contact_label:'İletişim', contact_title:'Mesajınızı<br><em>Bekliyoruz</em>',
+    contact_desc:'Rezervasyon veya konaklamayla ilgili sorularınız için bize yazın, en kısa sürede yanıt vereceğiz.',
+    ct_phone:'Telefon', ct_email:'E-Posta',
+    f_first:'Ad', f_last:'Soyad', f_email:'E-Posta', f_checkin:'Giriş', f_checkout:'Çıkış',
+    f_room:'Oda Tipi', f_select:'Lütfen seçin', f_msg:'Mesaj', f_send:'Mesaj Gönder',
+    f_success:'Teşekkürler! En kısa sürede size geri döneceğiz.',
+    footer_desc:'Fethiye\'nin kalbinde modern bir butik otel – tasarım, doğa ve misafirperverliğin buluştuğu yer.',
+    footer_rooms:'Odalar', footer_hotel:'Otel', footer_contact:'İletişim', footer_rights:'Tüm Hakları Saklıdır.',
+    book_quick:'Hızlı Rezervasyon', book_direct:'Direkt Rezervasyon'
+  }
+};
+
+let currentLang = localStorage.getItem('nakas_lang') || 'de';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('nakas_lang', lang);
+  applyLang();
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    const btnLang = btn.getAttribute('onclick').match(/setLang\('(\w+)'\)/)[1];
+    btn.classList.toggle('active', btnLang === lang);
+  });
+}
+
+function toggleBookMenu(e) {
+  e.stopPropagation();
+  document.getElementById('bookMenu').classList.toggle('open');
+}
+document.addEventListener('click', () => {
+  const m = document.getElementById('bookMenu');
+  if (m) m.classList.remove('open');
+});
+
+function applyLang() {
+  const t = i18n[currentLang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) {
+      el.innerHTML = t[key];
+    }
+  });
+}
+
+// On load
+setLang(currentLang);
+
+// ── SCROLL effects ──
+const nav = document.getElementById('nav');
+const bookingBar = document.getElementById('bookingBar');
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  nav.classList.toggle('scrolled', y > 60);
+  bookingBar.classList.toggle('visible', y > window.innerHeight * 0.7);
+});
+
+// ── SCROLL ANIMATIONS ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.anim-el').forEach(el => observer.observe(el));
+
+// ── LIGHTBOX ──
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+// ── CONTACT FORM ──
+function submitForm(e) {
+  e.preventDefault();
+  const success = document.getElementById('formSuccess');
+  const btn = e.target.querySelector('.btn-submit');
+  success.style.display = 'block';
+  btn.style.display = 'none';
+  setTimeout(() => { success.style.display = 'none'; btn.style.display = 'inline-flex'; e.target.reset(); }, 4000);
+}
+
+// ── DEFAULT DATES ──
+const today = new Date();
+const tomorrow = new Date(today); tomorrow.setDate(today.getDate() + 1);
+const nextWeek = new Date(today); nextWeek.setDate(today.getDate() + 7);
+const fmt = d => d.toISOString().split('T')[0];
+document.getElementById('barCheckin').value = fmt(tomorrow);
+document.getElementById('barCheckout').value = fmt(nextWeek);
+</script>
+</body>
+</html>
