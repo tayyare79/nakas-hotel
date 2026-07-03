@@ -1,8 +1,8 @@
 {
   "name": "Nakas Hotel – Fethiye",
   "short_name": "Nakas Hotel",
-  "description": "Nakas Hotel Fethiye – direkt rezervasyon, odalar, galeri ve iletişim.",
-  "lang": "tr",
+  "description": "Nakas Hotel Fethiye – Direktbuchung, Zimmer, Galerie und Kontakt.",
+  "lang": "de",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
