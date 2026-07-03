@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tayyare79.github.io/nakas-hotel/sitemap.xml
