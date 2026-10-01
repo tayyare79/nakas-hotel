@@ -210,15 +210,18 @@
   /* ── CONTACT ── */
   .contact-section { padding: 100px 80px; background: var(--sand); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
   .contact-form { display: flex; flex-direction: column; gap: 16px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .form-field { display: flex; flex-direction: column; gap: 6px; }
+  .form-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .form-field { min-width: 0; display: flex; flex-direction: column; gap: 6px; }
   .form-field label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); font-weight: 400; }
-  .form-field input, .form-field select, .form-field textarea { border: 1px solid rgba(0,0,0,0.12); background: white; padding: 12px 16px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--dark); outline: none; transition: border-color 0.3s; -webkit-appearance: none; }
+  .form-field input, .form-field select, .form-field textarea { min-width: 0; border: 1px solid rgba(0,0,0,0.12); background: white; padding: 12px 16px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--dark); outline: none; transition: border-color 0.3s; -webkit-appearance: none; }
   .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--green); }
   .form-field textarea { resize: vertical; min-height: 100px; }
   .btn-submit { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; padding: 15px 36px; background: var(--green); color: white; border: none; cursor: pointer; align-self: flex-start; transition: background 0.3s; margin-top: 8px; }
   .btn-submit:hover { background: oklch(30% 0.08 148); }
-  .form-success { display: none; background: oklch(92% 0.05 148); border: 1px solid var(--green); padding: 16px 20px; font-size: 13px; color: var(--green); }
+  .btn-submit:disabled { max-width: 100%; background: var(--mid); cursor: not-allowed; }
+  .form-notice { background: white; border: 1px solid var(--mid); padding: 16px 20px; font-size: 13px; color: var(--dark); line-height: 1.6; }
+  .form-notice a { color: var(--green); }
+  .form-notice:focus { outline: 2px solid var(--green); outline-offset: 3px; }
 
   /* ── FOOTER ── */
   footer { background: var(--dark); padding: 64px 80px 40px; }
@@ -581,28 +584,32 @@
     </div>
   </div>
   <div>
-    <form class="contact-form" id="contactForm" onsubmit="submitForm(event)">
+    <form class="contact-form" id="contactForm" aria-describedby="formNotice" onsubmit="submitForm(event)">
       <div class="form-row">
-        <div class="form-field"><label data-i18n="f_first">Vorname</label><input type="text" required></div>
-        <div class="form-field"><label data-i18n="f_last">Nachname</label><input type="text" required></div>
+        <div class="form-field"><label for="contactFirst" data-i18n="f_first">Vorname</label><input id="contactFirst" type="text" required></div>
+        <div class="form-field"><label for="contactLast" data-i18n="f_last">Nachname</label><input id="contactLast" type="text" required></div>
       </div>
-      <div class="form-field"><label data-i18n="f_email">E-Mail</label><input type="email" required></div>
+      <div class="form-field"><label for="contactEmail" data-i18n="f_email">E-Mail</label><input id="contactEmail" type="email" required></div>
       <div class="form-row">
-        <div class="form-field"><label data-i18n="f_checkin">Anreise</label><input type="date"></div>
-        <div class="form-field"><label data-i18n="f_checkout">Abreise</label><input type="date"></div>
+        <div class="form-field"><label for="contactCheckin" data-i18n="f_checkin">Anreise</label><input id="contactCheckin" type="date"></div>
+        <div class="form-field"><label for="contactCheckout" data-i18n="f_checkout">Abreise</label><input id="contactCheckout" type="date"></div>
       </div>
       <div class="form-field">
-        <label data-i18n="f_room">Zimmertyp</label>
-        <select>
+        <label for="contactRoom" data-i18n="f_room">Zimmertyp</label>
+        <select id="contactRoom">
           <option value="" data-i18n="f_select">Bitte wählen</option>
           <option>Penthouse Oda</option>
           <option>Standart Oda</option>
           <option>Bahçeli Oda</option>
         </select>
       </div>
-      <div class="form-field"><label data-i18n="f_msg">Nachricht</label><textarea></textarea></div>
-      <button type="submit" class="btn-submit" data-i18n="f_send">Nachricht senden</button>
-      <div class="form-success" id="formSuccess" data-i18n="f_success">Vielen Dank! Wir melden uns so schnell wie möglich.</div>
+      <div class="form-field"><label for="contactMessage" data-i18n="f_msg">Nachricht</label><textarea id="contactMessage"></textarea></div>
+      <button type="submit" class="btn-submit" data-i18n="f_unavailable_label" disabled>Formular derzeit nicht verfügbar</button>
+      <div class="form-notice" id="formNotice" role="status" tabindex="-1">
+        <p data-i18n="f_unavailable">Dieses Formular kann derzeit keine Nachrichten senden. Ihre Eingaben bleiben auf dieser Seite erhalten. Bitte kontaktieren Sie uns per E-Mail oder Telefon.</p>
+        <a href="mailto:info@nakashotel.com">info@nakashotel.com</a><br>
+        <a href="tel:+905307046893">+90 530 704 68 93</a>
+      </div>
     </form>
   </div>
 </section>
@@ -696,7 +703,8 @@ const i18n = {
     ct_phone:'Telefon', ct_email:'E-Mail',
     f_first:'Vorname', f_last:'Nachname', f_email:'E-Mail', f_checkin:'Anreise', f_checkout:'Abreise',
     f_room:'Zimmertyp', f_select:'Bitte wählen', f_msg:'Nachricht', f_send:'Nachricht senden',
-    f_success:'Vielen Dank! Wir melden uns so schnell wie möglich.',
+    f_unavailable_label:'Formular derzeit nicht verfügbar',
+    f_unavailable:'Dieses Formular kann derzeit keine Nachrichten senden. Ihre Eingaben bleiben auf dieser Seite erhalten. Bitte kontaktieren Sie uns per E-Mail oder Telefon.',
     footer_desc:'Ein modernes Boutique-Hotel in Fethiye, Türkei – wo Design, Natur und Gastfreundschaft zusammenkommen.',
     footer_rooms:'Zimmer', footer_hotel:'Hotel', footer_contact:'Kontakt', footer_rights:'Alle Rechte vorbehalten.',
     book_quick:'Schnellbuchung', book_direct:'Direkt buchen'
@@ -732,7 +740,8 @@ const i18n = {
     ct_phone:'Phone', ct_email:'E-Mail',
     f_first:'First Name', f_last:'Last Name', f_email:'E-Mail', f_checkin:'Check-in', f_checkout:'Check-out',
     f_room:'Room Type', f_select:'Please select', f_msg:'Message', f_send:'Send Message',
-    f_success:'Thank you! We will get back to you as soon as possible.',
+    f_unavailable_label:'Form currently unavailable',
+    f_unavailable:'This form cannot send messages at the moment. Your entries will remain on this page. Please contact us by email or phone.',
     footer_desc:'A modern boutique hotel in Fethiye, Turkey – where design, nature and hospitality come together.',
     footer_rooms:'Rooms', footer_hotel:'Hotel', footer_contact:'Contact', footer_rights:'All rights reserved.',
     book_quick:'Quick Booking', book_direct:'Book Direct'
@@ -768,7 +777,8 @@ const i18n = {
     ct_phone:'Телефон', ct_email:'Эл. почта',
     f_first:'Имя', f_last:'Фамилия', f_email:'Эл. почта', f_checkin:'Заезд', f_checkout:'Выезд',
     f_room:'Тип номера', f_select:'Пожалуйста, выберите', f_msg:'Сообщение', f_send:'Отправить',
-    f_success:'Спасибо! Мы свяжемся с вами в ближайшее время.',
+    f_unavailable_label:'Форма временно недоступна',
+    f_unavailable:'Сейчас эта форма не отправляет сообщения. Введённые данные останутся на этой странице. Свяжитесь с нами по электронной почте или телефону.',
     footer_desc:'Современный бутик-отель в Фетхие, Турция – там, где дизайн, природа и гостеприимство встречаются.',
     footer_rooms:'Номера', footer_hotel:'Отель', footer_contact:'Контакты', footer_rights:'Все права защищены.',
     book_quick:'Быстрое бронирование', book_direct:'Напрямую'
@@ -804,7 +814,8 @@ const i18n = {
     ct_phone:'电话', ct_email:'电子邮件',
     f_first:'名字', f_last:'姓氏', f_email:'电子邮件', f_checkin:'入住', f_checkout:'退房',
     f_room:'房型', f_select:'请选择', f_msg:'留言', f_send:'发送留言',
-    f_success:'感谢您！我们将尽快与您联系。',
+    f_unavailable_label:'表单暂时不可用',
+    f_unavailable:'此表单目前无法发送消息。您填写的内容将保留在当前页面。请通过电子邮件或电话联系我们。',
     footer_desc:'土耳其费特希耶的现代精品酒店——设计、自然与热情好客在此相遇。',
     footer_rooms:'客房', footer_hotel:'酒店', footer_contact:'联系方式', footer_rights:'版权所有。',
     book_quick:'快速预订', book_direct:'直接预订'
@@ -840,7 +851,8 @@ const i18n = {
     ct_phone:'Telefon', ct_email:'E-Posta',
     f_first:'Ad', f_last:'Soyad', f_email:'E-Posta', f_checkin:'Giriş', f_checkout:'Çıkış',
     f_room:'Oda Tipi', f_select:'Lütfen seçin', f_msg:'Mesaj', f_send:'Mesaj Gönder',
-    f_success:'Teşekkürler! En kısa sürede size geri döneceğiz.',
+    f_unavailable_label:'Form şu anda kullanılamıyor',
+    f_unavailable:'Bu form şu anda mesaj gönderemiyor. Girdiğiniz bilgiler bu sayfada kalır. Lütfen bize e-posta veya telefon yoluyla ulaşın.',
     footer_desc:'Fethiye\'nin kalbinde modern bir butik otel – tasarım, doğa ve misafirperverliğin buluştuğu yer.',
     footer_rooms:'Odalar', footer_hotel:'Otel', footer_contact:'İletişim', footer_rights:'Tüm Hakları Saklıdır.',
     book_quick:'Hızlı Rezervasyon', book_direct:'Direkt Rezervasyon'
@@ -911,11 +923,8 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
 // ── CONTACT FORM ──
 function submitForm(e) {
   e.preventDefault();
-  const success = document.getElementById('formSuccess');
-  const btn = e.target.querySelector('.btn-submit');
-  success.style.display = 'block';
-  btn.style.display = 'none';
-  setTimeout(() => { success.style.display = 'none'; btn.style.display = 'inline-flex'; e.target.reset(); }, 4000);
+  // No delivery backend is configured. Keep entries and never claim acceptance.
+  document.getElementById('formNotice').focus();
 }
 
 // ── DEFAULT DATES ──

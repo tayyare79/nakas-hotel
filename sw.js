@@ -1,4 +1,4 @@
-const VERSION = 'nakas-v1';
+const VERSION = 'nakas-v2-contact-form';
 const CORE = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];
 
 self.addEventListener('install', (e) => {
