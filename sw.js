@@ -1,5 +1,5 @@
-const VERSION = 'nakas-v2-contact-form';
-const CORE = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];
+const VERSION = 'nakas-v3-static-pages';
+const CORE = ['/', '/manifest.webmanifest', '/assets/site.js', '/icons/icon-192.png', '/icons/icon-512.png'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(CORE)).then(() => self.skipWaiting()));
@@ -28,7 +28,7 @@ self.addEventListener('fetch', (e) => {
           caches.open(VERSION).then((c) => c.put(request, copy));
           return res;
         })
-        .catch(() => caches.match(request).then((r) => r || caches.match('./')))
+        .catch(() => caches.match(request).then((r) => r || caches.match('/')))
     );
     return;
   }

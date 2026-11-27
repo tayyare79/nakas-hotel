@@ -1,9 +1,153 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://nakas-hotel.com/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://nakas-hotel.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nakas-hotel.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nakas-hotel.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://nakas-hotel.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nakas-hotel.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nakas-hotel.com/"/>
   </url>
   <url>
-    <loc>https://nakas-hotel.com/privacy.html</loc>
+    <loc>https://nakas-hotel.com/en/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://nakas-hotel.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nakas-hotel.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nakas-hotel.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://nakas-hotel.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nakas-hotel.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nakas-hotel.com/"/>
+  </url>
+  <url>
+    <loc>https://nakas-hotel.com/de/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://nakas-hotel.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nakas-hotel.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nakas-hotel.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://nakas-hotel.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nakas-hotel.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nakas-hotel.com/"/>
+  </url>
+  <url>
+    <loc>https://nakas-hotel.com/ru/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://nakas-hotel.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nakas-hotel.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nakas-hotel.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://nakas-hotel.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nakas-hotel.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nakas-hotel.com/"/>
+  </url>
+  <url>
+    <loc>https://nakas-hotel.com/zh/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://nakas-hotel.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nakas-hotel.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nakas-hotel.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://nakas-hotel.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nakas-hotel.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nakas-hotel.com/"/>
+  </url>
+  <url>
+    <loc>https://nakas-hotel.com/odalar/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://nakas-hotel.com/odalar/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nakas-hotel.com/en/rooms/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nakas-hotel.com/de/zimmer/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://nakas-hotel.com/ru/rooms/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nakas-hotel.com/zh/rooms/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nakas-hotel.com/odalar/"/>
+  </url>
+  <url>
+    <loc>https://nakas-hotel.com/en/rooms/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://nakas-hotel.com/odalar/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nakas-hotel.com/en/rooms/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nakas-hotel.com/de/zimmer/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://nakas-hotel.com/ru/rooms/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nakas-hotel.com/zh/rooms/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nakas-hotel.com/odalar/"/>
+  </url>
+  <url>
+    <loc>https://nakas-hotel.com/de/zimmer/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://nakas-hotel.com/odalar/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nakas-hotel.com/en/rooms/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nakas-hotel.com/de/zimmer/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://nakas-hotel.com/ru/rooms/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nakas-hotel.com/zh/rooms/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nakas-hotel.com/odalar/"/>
+  </url>
+  <url>
+    <loc>https://nakas-hotel.com/ru/rooms/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://nakas-hotel.com/odalar/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nakas-hotel.com/en/rooms/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nakas-hotel.com/de/zimmer/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://nakas-hotel.com/ru/rooms/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nakas-hotel.com/zh/rooms/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nakas-hotel.com/odalar/"/>
+  </url>
+  <url>
+    <loc>https://nakas-hotel.com/zh/rooms/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://nakas-hotel.com/odalar/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nakas-hotel.com/en/rooms/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nakas-hotel.com/de/zimmer/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://nakas-hotel.com/ru/rooms/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nakas-hotel.com/zh/rooms/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nakas-hotel.com/odalar/"/>
+  </url>
+  <url>
+    <loc>https://nakas-hotel.com/konum/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://nakas-hotel.com/konum/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nakas-hotel.com/en/location/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nakas-hotel.com/de/lage/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://nakas-hotel.com/ru/location/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nakas-hotel.com/zh/location/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nakas-hotel.com/konum/"/>
+  </url>
+  <url>
+    <loc>https://nakas-hotel.com/en/location/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://nakas-hotel.com/konum/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nakas-hotel.com/en/location/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nakas-hotel.com/de/lage/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://nakas-hotel.com/ru/location/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nakas-hotel.com/zh/location/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nakas-hotel.com/konum/"/>
+  </url>
+  <url>
+    <loc>https://nakas-hotel.com/de/lage/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://nakas-hotel.com/konum/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nakas-hotel.com/en/location/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nakas-hotel.com/de/lage/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://nakas-hotel.com/ru/location/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nakas-hotel.com/zh/location/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nakas-hotel.com/konum/"/>
+  </url>
+  <url>
+    <loc>https://nakas-hotel.com/ru/location/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://nakas-hotel.com/konum/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nakas-hotel.com/en/location/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nakas-hotel.com/de/lage/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://nakas-hotel.com/ru/location/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nakas-hotel.com/zh/location/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nakas-hotel.com/konum/"/>
+  </url>
+  <url>
+    <loc>https://nakas-hotel.com/zh/location/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://nakas-hotel.com/konum/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nakas-hotel.com/en/location/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://nakas-hotel.com/de/lage/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://nakas-hotel.com/ru/location/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://nakas-hotel.com/zh/location/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://nakas-hotel.com/konum/"/>
   </url>
 </urlset>
