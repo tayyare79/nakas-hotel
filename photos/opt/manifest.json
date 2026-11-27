@@ -1,0 +1,393 @@
+{
+ "photos": {
+  "hotel-ansicht": {
+   "width": 1600,
+   "height": 1200,
+   "webp": [
+    {
+     "w": 480,
+     "h": 360,
+     "src": "/photos/opt/hotel-ansicht-480.webp"
+    },
+    {
+     "w": 800,
+     "h": 600,
+     "src": "/photos/opt/hotel-ansicht-800.webp"
+    },
+    {
+     "w": 1200,
+     "h": 900,
+     "src": "/photos/opt/hotel-ansicht-1200.webp"
+    },
+    {
+     "w": 1600,
+     "h": 1200,
+     "src": "/photos/opt/hotel-ansicht-1600.webp"
+    }
+   ],
+   "fallback": {
+    "w": 800,
+    "h": 600,
+    "src": "/photos/opt/hotel-ansicht-800.jpg"
+   }
+  },
+  "fethiye-bay": {
+   "width": 1280,
+   "height": 960,
+   "webp": [
+    {
+     "w": 480,
+     "h": 360,
+     "src": "/photos/opt/fethiye-bay-480.webp"
+    },
+    {
+     "w": 800,
+     "h": 600,
+     "src": "/photos/opt/fethiye-bay-800.webp"
+    },
+    {
+     "w": 1200,
+     "h": 900,
+     "src": "/photos/opt/fethiye-bay-1200.webp"
+    },
+    {
+     "w": 1280,
+     "h": 960,
+     "src": "/photos/opt/fethiye-bay-1280.webp"
+    }
+   ],
+   "fallback": {
+    "w": 800,
+    "h": 600,
+    "src": "/photos/opt/fethiye-bay-800.jpg"
+   }
+  },
+  "penthouse": {
+   "width": 1600,
+   "height": 1200,
+   "webp": [
+    {
+     "w": 480,
+     "h": 360,
+     "src": "/photos/opt/penthouse-480.webp"
+    },
+    {
+     "w": 800,
+     "h": 600,
+     "src": "/photos/opt/penthouse-800.webp"
+    },
+    {
+     "w": 1200,
+     "h": 900,
+     "src": "/photos/opt/penthouse-1200.webp"
+    },
+    {
+     "w": 1600,
+     "h": 1200,
+     "src": "/photos/opt/penthouse-1600.webp"
+    }
+   ],
+   "fallback": {
+    "w": 800,
+    "h": 600,
+    "src": "/photos/opt/penthouse-800.jpg"
+   }
+  },
+  "standard": {
+   "width": 1600,
+   "height": 1200,
+   "webp": [
+    {
+     "w": 480,
+     "h": 360,
+     "src": "/photos/opt/standard-480.webp"
+    },
+    {
+     "w": 800,
+     "h": 600,
+     "src": "/photos/opt/standard-800.webp"
+    },
+    {
+     "w": 1200,
+     "h": 900,
+     "src": "/photos/opt/standard-1200.webp"
+    },
+    {
+     "w": 1600,
+     "h": 1200,
+     "src": "/photos/opt/standard-1600.webp"
+    }
+   ],
+   "fallback": {
+    "w": 800,
+    "h": 600,
+    "src": "/photos/opt/standard-800.jpg"
+   }
+  },
+  "garden": {
+   "width": 1600,
+   "height": 1200,
+   "webp": [
+    {
+     "w": 480,
+     "h": 360,
+     "src": "/photos/opt/garden-480.webp"
+    },
+    {
+     "w": 800,
+     "h": 600,
+     "src": "/photos/opt/garden-800.webp"
+    },
+    {
+     "w": 1200,
+     "h": 900,
+     "src": "/photos/opt/garden-1200.webp"
+    },
+    {
+     "w": 1600,
+     "h": 1200,
+     "src": "/photos/opt/garden-1600.webp"
+    }
+   ],
+   "fallback": {
+    "w": 800,
+    "h": 600,
+    "src": "/photos/opt/garden-800.jpg"
+   }
+  },
+  "room-sofa": {
+   "width": 738,
+   "height": 410,
+   "webp": [
+    {
+     "w": 480,
+     "h": 267,
+     "src": "/photos/opt/room-sofa-480.webp"
+    },
+    {
+     "w": 738,
+     "h": 410,
+     "src": "/photos/opt/room-sofa-738.webp"
+    }
+   ],
+   "fallback": {
+    "w": 738,
+    "h": 410,
+    "src": "/photos/opt/room-sofa-738.jpg"
+   }
+  },
+  "bed": {
+   "width": 902,
+   "height": 1600,
+   "webp": [
+    {
+     "w": 480,
+     "h": 851,
+     "src": "/photos/opt/bed-480.webp"
+    },
+    {
+     "w": 800,
+     "h": 1419,
+     "src": "/photos/opt/bed-800.webp"
+    },
+    {
+     "w": 902,
+     "h": 1600,
+     "src": "/photos/opt/bed-902.webp"
+    }
+   ],
+   "fallback": {
+    "w": 800,
+    "h": 1419,
+    "src": "/photos/opt/bed-800.jpg"
+   }
+  },
+  "balcony": {
+   "width": 1600,
+   "height": 1200,
+   "webp": [
+    {
+     "w": 480,
+     "h": 360,
+     "src": "/photos/opt/balcony-480.webp"
+    },
+    {
+     "w": 800,
+     "h": 600,
+     "src": "/photos/opt/balcony-800.webp"
+    },
+    {
+     "w": 1200,
+     "h": 900,
+     "src": "/photos/opt/balcony-1200.webp"
+    },
+    {
+     "w": 1600,
+     "h": 1200,
+     "src": "/photos/opt/balcony-1600.webp"
+    }
+   ],
+   "fallback": {
+    "w": 800,
+    "h": 600,
+    "src": "/photos/opt/balcony-800.jpg"
+   }
+  },
+  "room": {
+   "width": 1600,
+   "height": 1200,
+   "webp": [
+    {
+     "w": 480,
+     "h": 360,
+     "src": "/photos/opt/room-480.webp"
+    },
+    {
+     "w": 800,
+     "h": 600,
+     "src": "/photos/opt/room-800.webp"
+    },
+    {
+     "w": 1200,
+     "h": 900,
+     "src": "/photos/opt/room-1200.webp"
+    },
+    {
+     "w": 1600,
+     "h": 1200,
+     "src": "/photos/opt/room-1600.webp"
+    }
+   ],
+   "fallback": {
+    "w": 800,
+    "h": 600,
+    "src": "/photos/opt/room-800.jpg"
+   }
+  },
+  "bathroom": {
+   "width": 1600,
+   "height": 1200,
+   "webp": [
+    {
+     "w": 480,
+     "h": 360,
+     "src": "/photos/opt/bathroom-480.webp"
+    },
+    {
+     "w": 800,
+     "h": 600,
+     "src": "/photos/opt/bathroom-800.webp"
+    },
+    {
+     "w": 1200,
+     "h": 900,
+     "src": "/photos/opt/bathroom-1200.webp"
+    },
+    {
+     "w": 1600,
+     "h": 1200,
+     "src": "/photos/opt/bathroom-1600.webp"
+    }
+   ],
+   "fallback": {
+    "w": 800,
+    "h": 600,
+    "src": "/photos/opt/bathroom-800.jpg"
+   }
+  },
+  "washbasin": {
+   "width": 738,
+   "height": 410,
+   "webp": [
+    {
+     "w": 480,
+     "h": 267,
+     "src": "/photos/opt/washbasin-480.webp"
+    },
+    {
+     "w": 738,
+     "h": 410,
+     "src": "/photos/opt/washbasin-738.webp"
+    }
+   ],
+   "fallback": {
+    "w": 738,
+    "h": 410,
+    "src": "/photos/opt/washbasin-738.jpg"
+   }
+  },
+  "bath": {
+   "width": 1600,
+   "height": 1200,
+   "webp": [
+    {
+     "w": 480,
+     "h": 360,
+     "src": "/photos/opt/bath-480.webp"
+    },
+    {
+     "w": 800,
+     "h": 600,
+     "src": "/photos/opt/bath-800.webp"
+    },
+    {
+     "w": 1200,
+     "h": 900,
+     "src": "/photos/opt/bath-1200.webp"
+    },
+    {
+     "w": 1600,
+     "h": 1200,
+     "src": "/photos/opt/bath-1600.webp"
+    }
+   ],
+   "fallback": {
+    "w": 800,
+    "h": 600,
+    "src": "/photos/opt/bath-800.jpg"
+   }
+  },
+  "oludeniz": {
+   "width": 1600,
+   "height": 1152,
+   "webp": [
+    {
+     "w": 480,
+     "h": 346,
+     "src": "/photos/opt/oludeniz-480.webp"
+    },
+    {
+     "w": 800,
+     "h": 576,
+     "src": "/photos/opt/oludeniz-800.webp"
+    },
+    {
+     "w": 1200,
+     "h": 864,
+     "src": "/photos/opt/oludeniz-1200.webp"
+    },
+    {
+     "w": 1600,
+     "h": 1152,
+     "src": "/photos/opt/oludeniz-1600.webp"
+    }
+   ],
+   "fallback": {
+    "w": 800,
+    "h": 576,
+    "src": "/photos/opt/oludeniz-800.jpg"
+   }
+  }
+ },
+ "logo": {
+  "width": 160,
+  "height": 160,
+  "png": "/photos/opt/nakas-logo-160.png",
+  "webp": "/photos/opt/nakas-logo-160.webp"
+ },
+ "og": {
+  "width": 1200,
+  "height": 630,
+  "src": "/photos/opt/og-nakas-hotel-1200x630.jpg"
+ }
+}
