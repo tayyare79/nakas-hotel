@@ -151,7 +151,8 @@ def check_jsonld(p):
         if not hotels:
             err(f"{p.name}: no Hotel node in JSON-LD ({types})")
         for h in hotels:
-            for key in ("name", "address", "geo", "telephone", "numberOfRooms", "amenityFeature", "potentialAction"):
+            for key in ("name", "address", "geo", "telephone", "contactPoint", "numberOfRooms", "amenityFeature",
+                        "potentialAction"):
                 if key not in h:
                     err(f"{p.name}: Hotel JSON-LD lacks {key}")
             if "aggregateRating" in h or "review" in h:
