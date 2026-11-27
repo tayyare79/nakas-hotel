@@ -14,6 +14,7 @@ ETSTUR_URL = "https://www.etstur.com/Nakas-Hotel"
 PHONE = "+905307046893"
 PHONE_DISPLAY = "+90 530 704 68 93"
 EMAIL = "info@nakashotel.com"
+WHATSAPP_URL = "https://wa.me/905307046893"
 INSTAGRAM_URL = "https://www.instagram.com/nakas.hotel/"
 FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61575999142790"
 BOOKING_COM_URL = "https://www.booking.com/hotel/tr/nakas.tr.html"
@@ -80,6 +81,7 @@ NEW_STRINGS = {
         "loc_more": "Konum ve ulaşım bilgileri",
         "in_all_rooms": "Tüm odalarda",
         "directions": "Yol tarifi al",
+        "ct_whatsapp": "WhatsApp'tan yazın",
         "address": "Adres",
         "explore": "Fethiye'yi keşfedin",
         "crumb_home": "Ana Sayfa",
@@ -116,6 +118,7 @@ NEW_STRINGS = {
         "loc_more": "Location & directions",
         "in_all_rooms": "In every room",
         "directions": "Get directions",
+        "ct_whatsapp": "Message us on WhatsApp",
         "address": "Address",
         "explore": "Explore Fethiye",
         "crumb_home": "Home",
@@ -152,6 +155,7 @@ NEW_STRINGS = {
         "loc_more": "Lage & Anreise",
         "in_all_rooms": "In allen Zimmern",
         "directions": "Route planen",
+        "ct_whatsapp": "Per WhatsApp schreiben",
         "address": "Adresse",
         "explore": "Fethiye entdecken",
         "crumb_home": "Startseite",
@@ -188,6 +192,7 @@ NEW_STRINGS = {
         "loc_more": "Как добраться",
         "in_all_rooms": "Во всех номерах",
         "directions": "Построить маршрут",
+        "ct_whatsapp": "Написать в WhatsApp",
         "address": "Адрес",
         "explore": "Откройте Фетхие",
         "crumb_home": "Главная",
@@ -224,6 +229,7 @@ NEW_STRINGS = {
         "loc_more": "交通与位置详情",
         "in_all_rooms": "所有客房均配备",
         "directions": "获取路线",
+        "ct_whatsapp": "通过 WhatsApp 联系",
         "address": "地址",
         "explore": "探索费特希耶",
         "crumb_home": "首页",

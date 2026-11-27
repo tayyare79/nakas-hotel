@@ -42,6 +42,7 @@ def abs_url(path):
 ICON = {
     "pin": '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/>',
     "phone": '<path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 12 19.79 19.79 0 01.88 3.38 2 2 0 012.86 1.21h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6l1.06-1.06a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>',
+    "chat": '<path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>',
     "mail": '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>',
     "clock": '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
     "instagram": '<rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"/>',
@@ -128,6 +129,11 @@ def hotel_jsonld(lang, with_rooms):
         "telephone": C.PHONE,
         "email": C.EMAIL,
         "priceRange": "$$",
+        "contactPoint": [
+            {"@type": "ContactPoint", "contactType": "reservations", "telephone": C.PHONE, "email": C.EMAIL},
+            {"@type": "ContactPoint", "contactType": "reservations", "name": "WhatsApp", "telephone": C.PHONE,
+             "url": C.WHATSAPP_URL},
+        ],
         "address": {"@type": "PostalAddress", "streetAddress": C.STREET, "postalCode": C.POSTAL_CODE,
                     "addressLocality": C.CITY, "addressRegion": C.REGION, "addressCountry": "TR"},
         "geo": {"@type": "GeoCoordinates", "latitude": C.LAT, "longitude": C.LNG},
@@ -534,6 +540,7 @@ def contact(lang):
     cards = "\n      ".join([
         card(C.BOOKING_URL, "calendar", t["book_direct"], "rezervasyonal.com", ext=True, primary=True),
         card(f"tel:{C.PHONE}", "phone", t["ct_phone"], C.PHONE_DISPLAY),
+        card(C.WHATSAPP_URL, "chat", t["ct_whatsapp"], C.PHONE_DISPLAY, ext=True),
         card(f"mailto:{C.EMAIL}", "mail", t["ct_email"], C.EMAIL),
         card(C.INSTAGRAM_URL, "instagram", "Instagram", "@nakas.hotel", ext=True),
         card(C.MAPS_DIRECTIONS_URL, "pin", t["directions"], "Google Maps", ext=True),
